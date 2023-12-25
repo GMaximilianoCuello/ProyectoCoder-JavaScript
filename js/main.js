@@ -1,21 +1,26 @@
 //  Cliente
 
-let usuario = prompt("Ingrese su nombre:")
-let genero = prompt("¿Eres hombre, mujer u otro?")
+class Cliente {
+    constructor(nombre, genero){
+        this.nombre = nombre;
+        this.genero = genero.toLowerCase();
+    }
+}
 
+let cliente1 = new Cliente(prompt("Cual es tu nombre?"), prompt("Eres hombre, mujer u otro?"))
 
-switch (genero) {
+switch (cliente1.genero) {
 
     case "mujer":
-        alert("Bienvenida " + usuario + ", como le va?")
+        alert("Bienvenida " + cliente1.nombre + ", como le va?")
         break;
 
     case "hombre":
-        alert("Bienvenido " + usuario + ", como le va?")
+        alert("Bienvenido " + cliente1.nombre + ", como le va?")
         break;
     
     case "otro":
-        alert("Bienvenidx " + usuario + ", como le va?")
+        alert("Bienvenidx " + cliente1.nombre + ", como le va?")
         break;
 
     default:
@@ -26,26 +31,23 @@ switch (genero) {
 
 // PRODUCTOS Y SUMA
 
-let comprar = prompt("¿Que producto sera: taza o remera?")
+const productos = [
+    { producto: "taza", precio: 3500 },
 
-let taza = 3500;
-let remera = 5000;
+    { producto: "remera", precio: 5000 }
+]
 
-let cantidad = parseInt(prompt("¿cuantas quiere?"))
+let comprar = prompt("¿Que producto sera: taza o remera?").toLowerCase()
 
 const calcularIva = x => x * 0.21;
 
-if (comprar === "taza") {
-    let subtotal = cantidad * taza
-    let total = subtotal + calcularIva(subtotal)
-    console.log("El total a pagar es: " + total + " (incluye IVA)");
+if (comprar === "taza" || comprar === "remera") {
 
-} else if (comprar === "remera") {
-    let subtotal = cantidad * remera
-    let total = subtotal + calcularIva(subtotal)
-    console.log("El total a pagar es: " + total + " (incluye IVA)");
+    let cantidad = parseInt(prompt(`¿Cúantas ${comprar} querés?`))
+    let subtotal = cantidad * productos.find((product) => product.producto === comprar).precio;
+    let total = subtotal + calcularIva(subtotal);
+    console.log(total + " (Incluye iva)");
 
 } else {
-    alert("Elija solo entre taza y remera, gracias.")
-
+    alert("Por favor, elige entre tazas o remeras")
 }
