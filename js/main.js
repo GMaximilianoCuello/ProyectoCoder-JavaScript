@@ -7,7 +7,7 @@ const productos = [
     {
         id: "afa-21",
         titulo: "Adidas Argentina",
-        imagen: "../img/Adidas Afa 21.jpg",
+        imagen: "./img/Adidas Afa 21.jpg",
         categoria: {
             nombre: "Fútbol",
             id: "fútbol"
@@ -17,7 +17,7 @@ const productos = [
     {
         id: "telstar",
         titulo: "Adidas Telstar",
-        imagen: "../img/Adidas Telstar.jpg",
+        imagen: "./img/Adidas Telstar.jpg",
         categoria: {
             nombre: "Fútbol",
             id: "fútbol"
@@ -27,7 +27,7 @@ const productos = [
     {
         id: "tango",
         titulo: "Adidas Tango",
-        imagen: "../img/Adidas Tango.jpg",
+        imagen: "./img/Adidas Tango.jpg",
         categoria: {
             nombre: "Fútbol",
             id: "fútbol"
@@ -37,7 +37,7 @@ const productos = [
     {
         id: "finale",
         titulo: "Adidas Finale TRN",
-        imagen: "../img/adidas Finale TRN.jpg",
+        imagen: "./img/adidas Finale TRN.jpg",
         categoria: {
             nombre: "Fútbol",
             id: "fútbol"
@@ -48,7 +48,7 @@ const productos = [
     {
         id: "mva200",
         titulo: "Mikasa Mva 200",
-        imagen: "../img/Mva 200.jpg",
+        imagen: "./img/Mva 200.jpg",
         categoria: {
             nombre: "Vóley",
             id: "vóley"
@@ -58,7 +58,7 @@ const productos = [
     {
         id: "mva330",
         titulo: "Mikasa Mva 330",
-        imagen: "../img/Voley mikasa MVA-330.jpg",
+        imagen: "./img/Voley mikasa MVA-330.jpg",
         categoria: {
             nombre: "Vóley",
             id: "vóley"
@@ -68,7 +68,7 @@ const productos = [
     {
         id: "v330w",
         titulo: "Mikasa V330w",
-        imagen: "../img/V330w.jpg",
+        imagen: "./img/V330w.jpg",
         categoria: {
             nombre: "Vóley",
             id: "vóley"
@@ -78,7 +78,7 @@ const productos = [
     {
         id: "v390w",
         titulo: "Mikasa V390w",
-        imagen: "../img/V390w.jpg",
+        imagen: "./img/V390w.jpg",
         categoria: {
             nombre: "Vóley",
             id: "vóley"
@@ -89,7 +89,7 @@ const productos = [
     {
         id: "molten-4500",
         titulo: "Molten BG4500",
-        imagen: "../img/Molten 4500.jpg",
+        imagen: "./img/Molten 4500.jpg",
         categoria: {
             nombre: "Básquet",
             id: "básquet"
@@ -99,7 +99,7 @@ const productos = [
     {
         id: "molten-gg7x",
         titulo: "Molten GG7X",
-        imagen: "../img/Molten GG7X.jpg",
+        imagen: "./img/Molten GG7X.jpg",
         categoria: {
             nombre: "Básquet",
             id: "básquet"
@@ -109,7 +109,7 @@ const productos = [
     {
         id: "nba-street",
         titulo: "Spalding NBA Street",
-        imagen: "../img/Spalding NBA street.jpg",
+        imagen: "./img/Spalding NBA street.jpg",
         categoria: {
             nombre: "Básquet",
             id: "básquet"
@@ -119,7 +119,7 @@ const productos = [
     {
         id: "tf-1000",
         titulo: "Spalding TF-1000 Legacy",
-        imagen: "../img/Spalding TF1000 Legacy.jpg",
+        imagen: "./img/Spalding TF1000 Legacy.jpg",
         categoria: {
             nombre: "Básquet",
             id: "básquet"
