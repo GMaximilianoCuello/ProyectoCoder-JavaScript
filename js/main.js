@@ -1,53 +1,225 @@
-//  Cliente
+//
 
-class Cliente {
-    constructor(nombre, genero){
-        this.nombre = nombre;
-        this.genero = genero.toLowerCase();
-    }
-}
-
-let cliente1 = new Cliente(prompt("Cual es tu nombre?"), prompt("Eres hombre, mujer u otro?"))
-
-switch (cliente1.genero) {
-
-    case "mujer":
-        alert("Bienvenida " + cliente1.nombre + ", como le va?")
-        break;
-
-    case "hombre":
-        alert("Bienvenido " + cliente1.nombre + ", como le va?")
-        break;
-    
-    case "otro":
-        alert("Bienvenidx " + cliente1.nombre + ", como le va?")
-        break;
-
-    default:
-        alert("Por favor, introducir un genero o escribir 'otro'")
-        break;
-
-}
-
-// PRODUCTOS Y SUMA
+// ------ ID productos
 
 const productos = [
-    { producto: "taza", precio: 3500 },
+    // futbol
+    {
+        id: "afa-21",
+        titulo: "Adidas Argentina",
+        imagen: "../img/Adidas Afa 21.jpg",
+        categoria: {
+            nombre: "Fútbol",
+            id: "fútbol"
+        },
+        precio: 25000
+    },
+    {
+        id: "telstar",
+        titulo: "Adidas Telstar",
+        imagen: "../img/Adidas Telstar.jpg",
+        categoria: {
+            nombre: "Fútbol",
+            id: "fútbol"
+        },
+        precio: 40000
+    },
+    {
+        id: "tango",
+        titulo: "Adidas Tango",
+        imagen: "../img/Adidas Tango.jpg",
+        categoria: {
+            nombre: "Fútbol",
+            id: "fútbol"
+        },
+        precio: 30000
+    },
+    {
+        id: "finale",
+        titulo: "Adidas Finale TRN",
+        imagen: "../img/adidas Finale TRN.jpg",
+        categoria: {
+            nombre: "Fútbol",
+            id: "fútbol"
+        },
+        precio: 62000
+    },
+    // Voley
+    {
+        id: "mva200",
+        titulo: "Mikasa Mva 200",
+        imagen: "../img/Mva 200.jpg",
+        categoria: {
+            nombre: "Vóley",
+            id: "vóley"
+        },
+        precio: 30000
+    },
+    {
+        id: "mva330",
+        titulo: "Mikasa Mva 330",
+        imagen: "../img/Voley mikasa MVA-330.jpg",
+        categoria: {
+            nombre: "Vóley",
+            id: "vóley"
+        },
+        precio: 70000
+    },
+    {
+        id: "v330w",
+        titulo: "Mikasa V330w",
+        imagen: "../img/V330w.jpg",
+        categoria: {
+            nombre: "Vóley",
+            id: "vóley"
+        },
+        precio: 20000
+    },
+    {
+        id: "v390w",
+        titulo: "Mikasa V390w",
+        imagen: "../img/V390w.jpg",
+        categoria: {
+            nombre: "Vóley",
+            id: "vóley"
+        },
+        precio: 50000
+    },
+    // Basquet
+    {
+        id: "molten-4500",
+        titulo: "Molten BG4500",
+        imagen: "../img/Molten 4500.jpg",
+        categoria: {
+            nombre: "Básquet",
+            id: "básquet"
+        },
+        precio: 42000
+    },
+    {
+        id: "molten-gg7x",
+        titulo: "Molten GG7X",
+        imagen: "../img/Molten GG7X.jpg",
+        categoria: {
+            nombre: "Básquet",
+            id: "básquet"
+        },
+        precio: 110000
+    },
+    {
+        id: "nba-street",
+        titulo: "Spalding NBA Street",
+        imagen: "../img/Spalding NBA street.jpg",
+        categoria: {
+            nombre: "Básquet",
+            id: "básquet"
+        },
+        precio: 75000
+    },
+    {
+        id: "tf-1000",
+        titulo: "Spalding TF-1000 Legacy",
+        imagen: "../img/Spalding TF1000 Legacy.jpg",
+        categoria: {
+            nombre: "Básquet",
+            id: "básquet"
+        },
+        precio: 50000
+    },
+];
 
-    { producto: "remera", precio: 5000 }
-]
+const contenedorProductos = document.querySelector("#contenedor-productos");
+const botonesCategorias = document.querySelectorAll(".boton-contenido");
+const tituloPrincipal = document.querySelector("#titulo-categoria");
+let botonesAgregar = document.querySelectorAll(".agregar")
+const numerito = document.querySelector("#numerito")
 
-let comprar = prompt("¿Que producto sera: taza o remera?").toLowerCase()
+function cargarProductos(productosElegidos) {
 
-const calcularIva = x => x * 0.21;
+    contenedorProductos.innerHTML = "";
 
-if (comprar === "taza" || comprar === "remera") {
+    productosElegidos.forEach(producto => {
+        
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+            <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+            <div class="producto-info">
+                <h3 class="producto-nombre">${producto.titulo}</h3>
+                <p class="producto-precio">$${producto.precio}</p>
+                <button class="agregar" id="${producto.id}">Agregar a carrito</button>
+            </div>
+        `;
+        contenedorProductos.append(div);
 
-    let cantidad = parseInt(prompt(`¿Cúantas ${comprar} querés?`))
-    let subtotal = cantidad * productos.find((product) => product.producto === comprar).precio;
-    let total = subtotal + calcularIva(subtotal);
-    console.log(total + " (Incluye iva)");
+    })
 
-} else {
-    alert("Por favor, elige entre tazas o remeras")
+    actualizarBotonesAgregar();
+    
+};
+
+cargarProductos(productos);
+
+botonesCategorias.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+
+        botonesCategorias.forEach(boton => boton.classList.remove("active"))
+        e.currentTarget.classList.add("active");
+
+        if(e.currentTarget.id != "todos"){
+            const productosCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id)
+            tituloPrincipal.innerText = productosCategoria.categoria.nombre;
+
+            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id)
+            cargarProductos(productosBoton);
+        } else {
+            tituloPrincipal.innerText = "Todos los productos";
+            cargarProductos(productos)
+        }
+    })
+});
+
+function actualizarBotonesAgregar() {
+    botonesAgregar = document.querySelectorAll(".agregar");
+
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito)
+    })
+
+}
+
+let productosEnCarrito;
+
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito")
+
+if(productosEnCarritoLS) {
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito()
+}else {
+    productosEnCarrito = [];
+}
+
+
+function agregarAlCarrito(e) {
+
+    const idAgregar = e.currentTarget.id
+    const productoAgregado = productos.find(producto => producto.id === idAgregar)
+
+    if(productosEnCarrito.some(producto => producto.id === idAgregar)) {
+        const index = productosEnCarrito.findIndex(producto => producto.id === idAgregar)
+        productosEnCarrito[index].cantidad++
+    } else {
+        productoAgregado.cantidad = 1;
+        productosEnCarrito.push(productoAgregado);
+    }
+
+    actualizarNumerito()
+    
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+}
+
+function actualizarNumerito() {
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)
+    numerito.innerText = nuevoNumerito;
+    
 }
