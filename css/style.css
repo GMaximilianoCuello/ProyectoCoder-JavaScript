@@ -256,7 +256,7 @@ main {
 .carrito-producto-eliminar {
     border: 0;
     background-color: transparent;
-    color: red;
+    color: #ff0000;
     cursor: pointer;
 }
 
@@ -281,7 +281,7 @@ main {
 
 .carrito-acciones-total {
     display: flex;
-    background-color: rgb(223, 223, 223);
+    background-color: #dfdfdf;
     padding: 1rem;;
     color: black;
     text-transform: uppercase;
@@ -293,7 +293,7 @@ main {
 
 .carrito-acciones-comprar {
     border: 0;
-    background-color: rgb(118, 171, 233);
+    background-color: #76abe9;
     padding: 1rem;
     color: white;
     text-transform: uppercase;

@@ -1,132 +1,14 @@
-//
+// carga de productos
+let productos = [];
 
-// ------ ID productos
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
 
-const productos = [
-    // futbol
-    {
-        id: "afa-21",
-        titulo: "Adidas Argentina",
-        imagen: "./img/Adidas Afa 21.jpg",
-        categoria: {
-            nombre: "Fútbol",
-            id: "fútbol"
-        },
-        precio: 25000
-    },
-    {
-        id: "telstar",
-        titulo: "Adidas Telstar",
-        imagen: "./img/Adidas Telstar.jpg",
-        categoria: {
-            nombre: "Fútbol",
-            id: "fútbol"
-        },
-        precio: 40000
-    },
-    {
-        id: "tango",
-        titulo: "Adidas Tango",
-        imagen: "./img/Adidas Tango.jpg",
-        categoria: {
-            nombre: "Fútbol",
-            id: "fútbol"
-        },
-        precio: 30000
-    },
-    {
-        id: "finale",
-        titulo: "Adidas Finale TRN",
-        imagen: "./img/adidas Finale TRN.jpg",
-        categoria: {
-            nombre: "Fútbol",
-            id: "fútbol"
-        },
-        precio: 62000
-    },
-    // Voley
-    {
-        id: "mva200",
-        titulo: "Mikasa Mva 200",
-        imagen: "./img/Mva 200.jpg",
-        categoria: {
-            nombre: "Vóley",
-            id: "vóley"
-        },
-        precio: 30000
-    },
-    {
-        id: "mva330",
-        titulo: "Mikasa Mva 330",
-        imagen: "./img/Voley mikasa MVA-330.jpg",
-        categoria: {
-            nombre: "Vóley",
-            id: "vóley"
-        },
-        precio: 70000
-    },
-    {
-        id: "v330w",
-        titulo: "Mikasa V330w",
-        imagen: "./img/V330w.jpg",
-        categoria: {
-            nombre: "Vóley",
-            id: "vóley"
-        },
-        precio: 20000
-    },
-    {
-        id: "v390w",
-        titulo: "Mikasa V390w",
-        imagen: "./img/V390w.jpg",
-        categoria: {
-            nombre: "Vóley",
-            id: "vóley"
-        },
-        precio: 50000
-    },
-    // Basquet
-    {
-        id: "molten-4500",
-        titulo: "Molten BG4500",
-        imagen: "./img/Molten 4500.jpg",
-        categoria: {
-            nombre: "Básquet",
-            id: "básquet"
-        },
-        precio: 42000
-    },
-    {
-        id: "molten-gg7x",
-        titulo: "Molten GG7X",
-        imagen: "./img/Molten GG7X.jpg",
-        categoria: {
-            nombre: "Básquet",
-            id: "básquet"
-        },
-        precio: 110000
-    },
-    {
-        id: "nba-street",
-        titulo: "Spalding NBA Street",
-        imagen: "./img/Spalding NBA street.jpg",
-        categoria: {
-            nombre: "Básquet",
-            id: "básquet"
-        },
-        precio: 75000
-    },
-    {
-        id: "tf-1000",
-        titulo: "Spalding TF-1000 Legacy",
-        imagen: "./img/Spalding TF1000 Legacy.jpg",
-        categoria: {
-            nombre: "Básquet",
-            id: "básquet"
-        },
-        precio: 50000
-    },
-];
+//llamado de HTML 
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-contenido");
@@ -158,7 +40,6 @@ function cargarProductos(productosElegidos) {
     
 };
 
-cargarProductos(productos);
 
 botonesCategorias.forEach(boton => {
     boton.addEventListener("click", (e) => {
@@ -201,6 +82,26 @@ if(productosEnCarritoLS) {
 
 
 function agregarAlCarrito(e) {
+
+    Toastify({
+        text: "Agregado al carrito!",
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "linear-gradient(to right, #76abe9, #87cefa)",
+          borderRadius: "1rem",
+          textTransform: "uppercase",
+          fontSize: ".9rem"
+        },
+        offset: {
+            x: "2rem", // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: "1rem" // vertical axis - can be a number or a string indicating unity. eg: '2em'
+          },
+        onClick: function(){} // Callback after click
+    }).showToast();
 
     const idAgregar = e.currentTarget.id
     const productoAgregado = productos.find(producto => producto.id === idAgregar)
